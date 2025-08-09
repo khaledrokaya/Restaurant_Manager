@@ -1,0 +1,106 @@
+.contact-item {
+  transition: transform 0.2s ease;
+}
+
+.contact-item:hover {
+  transform: translateX(5px);
+}
+
+.card {
+  border: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Contact info icons */
+.bi-geo-alt-fill,
+.bi-telephone-fill,
+.bi-envelope-fill,
+.bi-clock-fill {
+  transition: transform 0.2s ease;
+}
+
+.contact-item:hover .bi-geo-alt-fill,
+.contact-item:hover .bi-telephone-fill,
+.contact-item:hover .bi-envelope-fill,
+.contact-item:hover .bi-clock-fill {
+  transform: scale(1.1);
+}
+
+/* Form styling */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--bs-primary) 0%, #0056b3 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+}
+
+/* Success alert animation */
+.alert-success {
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FAQ section */
+.col-md-6 h6 {
+  color: var(--bs-primary);
+  transition: color 0.2s ease;
+}
+
+.col-md-6:hover h6 {
+  color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2.5rem;
+  }
+
+  .contact-item:hover {
+    transform: none;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+  }
+}
+
+/* Loading spinner animation */
+.spinner-border-sm {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

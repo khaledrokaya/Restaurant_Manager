@@ -1,0 +1,120 @@
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Header Section -->
+      <div class="card bg-gradient bg-primary text-white shadow-lg rounded-4 mb-4">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h1 class="fw-bold mb-2">
+                <i class="bi bi-plus-circle me-3"></i>Add New Restaurant
+              </h1>
+              <p class="mb-0 fs-5 opacity-75">
+                Add a new restaurant to your management system
+              </p>
+            </div>
+            <button (click)="goBack()" class="btn btn-outline-light fw-semibold px-4 py-2">
+              <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Restaurant Form -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-white border-bottom">
+          <h5 class="mb-0 fw-semibold">
+            <i class="bi bi-info-circle me-2"></i>Restaurant Details
+          </h5>
+        </div>
+        <div class="card-body p-4">
+          <form [formGroup]="restaurantForm" (ngSubmit)="addRestaurant()">
+            <div class="row">
+              <!-- Restaurant Name -->
+              <div class="col-md-6 mb-3">
+                <label for="name" class="form-label fw-semibold">
+                  <i class="bi bi-shop me-1"></i>Restaurant Name *
+                </label>
+                <input type="text" id="name" class="form-control"
+                  [class.is-invalid]="hasError('name', 'required') || hasError('name', 'minlength')"
+                  formControlName="name" placeholder="Enter restaurant name">
+                <div *ngIf="getErrorMessage('name')" class="invalid-feedback">
+                  {{ getErrorMessage('name') }}
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label fw-semibold">
+                  <i class="bi bi-envelope me-1"></i>Email Address *
+                </label>
+                <input type="email" id="email" class="form-control"
+                  [class.is-invalid]="hasError('email', 'required') || hasError('email', 'email')"
+                  formControlName="email" placeholder="Enter email address">
+                <div *ngIf="getErrorMessage('email')" class="invalid-feedback">
+                  {{ getErrorMessage('email') }}
+                </div>
+              </div>
+
+              <!-- Mobile -->
+              <div class="col-md-6 mb-3">
+                <label for="mobile" class="form-label fw-semibold">
+                  <i class="bi bi-phone me-1"></i>Mobile Number *
+                </label>
+                <input type="tel" id="mobile" class="form-control"
+                  [class.is-invalid]="hasError('mobile', 'required') || hasError('mobile', 'pattern')"
+                  formControlName="mobile" placeholder="Enter 10-digit mobile number">
+                <div *ngIf="getErrorMessage('mobile')" class="invalid-feedback">
+                  {{ getErrorMessage('mobile') }}
+                </div>
+              </div>
+
+              <!-- Services -->
+              <div class="col-md-6 mb-3">
+                <label for="services" class="form-label fw-semibold">
+                  <i class="bi bi-tags me-1"></i>Services *
+                </label>
+                <select id="services" class="form-select" [class.is-invalid]="hasError('services', 'required')"
+                  formControlName="services">
+                  <option value="">Select service type</option>
+                  <option value="Dine-in">Dine-in</option>
+                  <option value="Takeaway">Takeaway</option>
+                  <option value="Delivery">Delivery</option>
+                  <option value="All">All Services</option>
+                </select>
+                <div *ngIf="getErrorMessage('services')" class="invalid-feedback">
+                  {{ getErrorMessage('services') }}
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div class="col-12 mb-4">
+                <label for="address" class="form-label fw-semibold">
+                  <i class="bi bi-geo-alt me-1"></i>Address *
+                </label>
+                <textarea id="address" class="form-control" rows="3"
+                  [class.is-invalid]="hasError('address', 'required') || hasError('address', 'minlength')"
+                  formControlName="address" placeholder="Enter complete address"></textarea>
+                <div *ngIf="getErrorMessage('address')" class="invalid-feedback">
+                  {{ getErrorMessage('address') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex gap-3 justify-content-end">
+              <button type="button" class="btn btn-outline-secondary px-4 py-2" (click)="goBack()">
+                <i class="bi bi-x-circle me-2"></i>Cancel
+              </button>
+              <button type="submit" class="btn btn-primary px-4 py-2" [disabled]="restaurantForm.invalid || isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+                <i *ngIf="!isLoading" class="bi bi-plus-circle me-2"></i>
+                {{ isLoading ? 'Adding...' : 'Add Restaurant' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

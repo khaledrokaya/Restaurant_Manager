@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "email": "alice@example.com",
+      "password": "alice123",
+      "name": "Alice",
+      "mobile": "1234567890"
+    },
+    {
+      "email": "bob@example.com",
+      "password": "bob123",
+      "name": "Bob",
+      "mobile": "2345678901"
+    },
+    {
+      "email": "carol@example.com",
+      "password": "carol123",
+      "name": "Carol",
+      "mobile": "3456789012"
+    }
+  ],
+  "restaurents": [
+    {
+      "id": 1,
+      "name": "Cafe Goodluck",
+      "address": "MG Road",
+      "email": "goodluck@cafe.com",
+      "services": "chai, coffee",
+      "mobile": "9876543210"
+    },
+    {
+      "id": 2,
+      "name": "Spice Villa",
+      "address": "Park Street",
+      "email": "spice@villa.com",
+      "services": "dine-in, delivery",
+      "mobile": "9123456780"
+    },
+    {
+      "id": 3,
+      "name": "Urban Bites",
+      "address": "City Center",
+      "email": "urban@bites.com",
+      "services": "fast food",
+      "mobile": "9988776655"
+    }
+  ]
+}

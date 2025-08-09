@@ -1,0 +1,199 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Header -->
+      <div class="text-center mb-5">
+        <div class="mb-4">
+          <i class="bi bi-envelope-fill text-primary" style="font-size: 4rem;"></i>
+        </div>
+        <h1 class="display-4 fw-bold text-primary mb-3">Contact Us</h1>
+        <p class="lead text-muted">We'd love to hear from you. Send us a message!</p>
+      </div>
+
+      <div class="row">
+        <!-- Contact Information -->
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body p-4">
+              <h4 class="fw-bold text-primary mb-4">Get in Touch</h4>
+
+              <div class="contact-item mb-4">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-geo-alt-fill text-primary me-3 mt-1"></i>
+                  <div>
+                    <h6 class="fw-semibold">Office Address</h6>
+                    <p class="text-muted mb-0">123 Restaurant Street<br>Food City, FC 12345</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-item mb-4">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-telephone-fill text-primary me-3 mt-1"></i>
+                  <div>
+                    <h6 class="fw-semibold">Phone Number</h6>
+                    <p class="text-muted mb-0">
+                      <a href="tel:+1234567890" class="text-decoration-none text-primary">+1 (234) 567-890</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-item mb-4">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-envelope-fill text-primary me-3 mt-1"></i>
+                  <div>
+                    <h6 class="fw-semibold">Email Address</h6>
+                    <p class="text-muted mb-0">
+                      <a href="mailto:support@restaurantapp.com" class="text-decoration-none text-primary">
+                        support@restaurantapp.com
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-clock-fill text-primary me-3 mt-1"></i>
+                  <div>
+                    <h6 class="fw-semibold">Business Hours</h6>
+                    <p class="text-muted mb-0">
+                      Mon - Fri: 9:00 AM - 6:00 PM<br>
+                      Sat - Sun: 10:00 AM - 4:00 PM
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body p-4">
+              <h4 class="fw-bold text-primary mb-4">Send us a Message</h4>
+
+              <div *ngIf="submitted && contactForm.valid" class="alert alert-success" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                Thank you for your message! We'll get back to you soon.
+              </div>
+
+              <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-person me-1"></i>First Name
+                    </label>
+                    <input formControlName="firstName" type="text" class="form-control form-control-lg"
+                      placeholder="Enter your first name" [class.is-invalid]="firstName?.invalid && firstName?.touched"
+                      [class.is-valid]="firstName?.valid && firstName?.touched">
+                    <div *ngIf="firstName?.invalid && firstName?.touched" class="invalid-feedback">
+                      First name is required
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-person me-1"></i>Last Name
+                    </label>
+                    <input formControlName="lastName" type="text" class="form-control form-control-lg"
+                      placeholder="Enter your last name" [class.is-invalid]="lastName?.invalid && lastName?.touched"
+                      [class.is-valid]="lastName?.valid && lastName?.touched">
+                    <div *ngIf="lastName?.invalid && lastName?.touched" class="invalid-feedback">
+                      Last name is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">
+                    <i class="bi bi-envelope me-1"></i>Email Address
+                  </label>
+                  <input formControlName="email" type="email" class="form-control form-control-lg"
+                    placeholder="Enter your email" [class.is-invalid]="email?.invalid && email?.touched"
+                    [class.is-valid]="email?.valid && email?.touched">
+                  <div *ngIf="email?.invalid && email?.touched" class="invalid-feedback">
+                    <span *ngIf="email?.errors?.['required']">Email is required</span>
+                    <span *ngIf="email?.errors?.['email']">Please enter a valid email</span>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">
+                    <i class="bi bi-tag me-1"></i>Subject
+                  </label>
+                  <select formControlName="subject" class="form-select form-select-lg"
+                    [class.is-invalid]="subject?.invalid && subject?.touched"
+                    [class.is-valid]="subject?.valid && subject?.touched">
+                    <option value="">Select a subject</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="support">Technical Support</option>
+                    <option value="feature">Feature Request</option>
+                    <option value="bug">Bug Report</option>
+                    <option value="business">Business Partnership</option>
+                  </select>
+                  <div *ngIf="subject?.invalid && subject?.touched" class="invalid-feedback">
+                    Please select a subject
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label fw-semibold">
+                    <i class="bi bi-chat-dots me-1"></i>Message
+                  </label>
+                  <textarea formControlName="message" class="form-control form-control-lg" rows="5"
+                    placeholder="Enter your message here..." [class.is-invalid]="message?.invalid && message?.touched"
+                    [class.is-valid]="message?.valid && message?.touched"></textarea>
+                  <div *ngIf="message?.invalid && message?.touched" class="invalid-feedback">
+                    <span *ngIf="message?.errors?.['required']">Message is required</span>
+                    <span *ngIf="message?.errors?.['minlength']">Message must be at least 10 characters</span>
+                  </div>
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary btn-lg" [disabled]="contactForm.invalid || isSubmitting">
+                    <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                    <i *ngIf="!isSubmitting" class="bi bi-send me-2"></i>
+                    {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="mt-5">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h4 class="fw-bold text-primary mb-4 text-center">
+              <i class="bi bi-question-circle me-2"></i>Frequently Asked Questions
+            </h4>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <h6 class="fw-semibold">How do I add a new restaurant?</h6>
+                <p class="text-muted small">Navigate to the dashboard and click the "Add Restaurant" button.</p>
+              </div>
+              <div class="col-md-6 mb-3">
+                <h6 class="fw-semibold">Can I export my data?</h6>
+                <p class="text-muted small">Yes, use the export button on the dashboard to download your data.</p>
+              </div>
+              <div class="col-md-6 mb-3">
+                <h6 class="fw-semibold">Is my data secure?</h6>
+                <p class="text-muted small">Absolutely! We use industry-standard security measures.</p>
+              </div>
+              <div class="col-md-6 mb-3">
+                <h6 class="fw-semibold">How can I edit restaurant details?</h6>
+                <p class="text-muted small">Click on any restaurant name or use the edit button in the actions column.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,207 @@
+<div class="container-fluid py-4">
+  <!-- Header Section -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card bg-gradient bg-primary text-white shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h1 class="fw-bold mb-2">
+                <i class="bi bi-speedometer2 me-3"></i>Restaurant Dashboard
+              </h1>
+              <p class="mb-0 fs-5 opacity-75">
+                Manage your restaurant records efficiently
+              </p>
+            </div>
+            <div class="d-flex gap-2">
+              <button (click)="goToAdd()" class="btn btn-light text-primary fw-semibold px-4 py-2 shadow">
+                <i class="bi bi-plus-circle me-2"></i>Add Restaurant
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="row mb-4">
+    <div class="col-lg-3 col-md-6 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body text-center">
+          <div class="text-primary mb-2">
+            <i class="bi bi-shop" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3 class="fw-bold text-primary">{{ restaurents.length }}</h3>
+          <p class="text-muted mb-0">Total Restaurants</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body text-center">
+          <div class="text-primary mb-2">
+            <i class="bi bi-check-circle" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3 class="fw-bold text-primary">{{ getActiveRestaurants() }}</h3>
+          <p class="text-muted mb-0">Active Today</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body text-center">
+          <div class="text-primary mb-2">
+            <i class="bi bi-star" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3 class="fw-bold text-primary">4.8</h3>
+          <p class="text-muted mb-0">Average Rating</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body text-center">
+          <div class="text-primary mb-2">
+            <i class="bi bi-geo-alt" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3 class="fw-bold text-primary">{{ getCityCount() }}</h3>
+          <p class="text-muted mb-0">Cities Covered</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search and Filter Section -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-search"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Search restaurants..." [(ngModel)]="searchTerm"
+                  (input)="filterRestaurants()">
+              </div>
+            </div>
+            <div class="col-md-6 text-md-end mt-2 mt-md-0">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-primary" (click)="sortBy('name')">
+                  <i class="bi bi-sort-alpha-down me-1"></i>Name
+                </button>
+                <button type="button" class="btn btn-outline-primary" (click)="sortBy('email')">
+                  <i class="bi bi-envelope me-1"></i>Email
+                </button>
+                <button type="button" class="btn btn-outline-primary" (click)="exportData()">
+                  <i class="bi bi-download me-1"></i>Export
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Restaurants Table -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white border-bottom">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-semibold">
+              <i class="bi bi-table me-2"></i>Restaurant Records
+            </h5>
+            <span class="badge bg-primary fs-6">{{ filteredRestaurents.length }} Records</span>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col" class="px-4 py-3">#</th>
+                  <th scope="col" class="px-4 py-3">
+                    <i class="bi bi-shop me-1"></i>Restaurant Name
+                  </th>
+                  <th scope="col" class="px-4 py-3">
+                    <i class="bi bi-envelope me-1"></i>Email
+                  </th>
+                  <th scope="col" class="px-4 py-3">
+                    <i class="bi bi-geo-alt me-1"></i>Address
+                  </th>
+                  <th scope="col" class="px-4 py-3">
+                    <i class="bi bi-phone me-1"></i>Phone
+                  </th>
+                  <th scope="col" class="px-4 py-3">
+                    <i class="bi bi-tags me-1"></i>Services
+                  </th>
+                  <th scope="col" class="px-4 py-3 text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of filteredRestaurents; let i = index" class="align-middle">
+                  <td class="px-4 py-3">
+                    <span class="badge bg-light text-dark fs-6">{{ i + 1 }}</span>
+                  </td>
+                  <td class="px-4 py-3">
+                    <a (click)="goToDetails(data.id)" class="text-decoration-none fw-semibold text-primary"
+                      style="cursor:pointer" title="View Details">
+                      <i class="bi bi-shop me-1"></i>{{ data.name }}
+                    </a>
+                  </td>
+                  <td class="px-4 py-3">
+                    <a href="mailto:{{ data.email }}" class="text-decoration-none">
+                      {{ data.email }}
+                    </a>
+                  </td>
+                  <td class="px-4 py-3">
+                    <span class="text-muted">{{ data.address | slice:0:30 }}{{ data.address.length > 30 ? '...' : ''
+                      }}</span>
+                  </td>
+                  <td class="px-4 py-3">
+                    <a href="tel:{{ data.mobile }}" class="text-decoration-none">
+                      {{ data.mobile }}
+                    </a>
+                  </td>
+                  <td class="px-4 py-3">
+                    <span class="badge bg-secondary">{{ data.services }}</span>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <div class="btn-group" role="group">
+                      <button (click)="goToDetails(data.id)" class="btn btn-outline-primary btn-sm"
+                        title="View Details">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button (click)="editRestaurant(data.id)" class="btn btn-outline-primary btn-sm" title="Edit">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button (click)="deleteResto(data.id)" class="btn btn-outline-danger btn-sm" title="Delete">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="filteredRestaurents.length === 0">
+                  <td colspan="7" class="text-center py-5">
+                    <div class="text-muted">
+                      <i class="bi bi-inbox" style="font-size: 3rem;"></i>
+                      <h5 class="mt-3">No restaurants found</h5>
+                      <p>Try adjusting your search criteria or add a new restaurant.</p>
+                      <button (click)="goToAdd()" class="btn btn-primary">
+                        <i class="bi bi-plus-circle me-2"></i>Add First Restaurant
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="container-fluid py-5 bg-light" style="min-height: calc(100vh - 120px);">
+  <div class="row w-100 justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="col-lg-5 col-md-7 col-sm-9">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <div class="mb-3">
+              <i class="bi bi-person-plus-fill text-primary" style="font-size: 3rem;"></i>
+            </div>
+            <h2 class="fw-bold text-primary">Create Account</h2>
+            <p class="text-muted">Join us and start managing your restaurants</p>
+          </div>
+
+          <div *ngIf="signupError" class="alert alert-danger text-center" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ signupError }}
+          </div>
+
+          <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-person me-1"></i>Full Name
+                </label>
+                <input formControlName="name" type="text" class="form-control form-control-lg"
+                  placeholder="Enter your name" [class.is-invalid]="name?.invalid && name?.touched"
+                  [class.is-valid]="name?.valid && name?.touched">
+                <div *ngIf="name?.invalid && name?.touched" class="invalid-feedback">
+                  <small *ngIf="name?.errors?.['required']">Name is required</small>
+                  <small *ngIf="name?.errors?.['minlength']">Name must be at least 2 characters</small>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-phone me-1"></i>Phone Number
+                </label>
+                <input formControlName="mobile" type="tel" class="form-control form-control-lg"
+                  placeholder="Enter phone number" [class.is-invalid]="mobile?.invalid && mobile?.touched"
+                  [class.is-valid]="mobile?.valid && mobile?.touched">
+                <div *ngIf="mobile?.invalid && mobile?.touched" class="invalid-feedback">
+                  <small *ngIf="mobile?.errors?.['required']">Phone number is required</small>
+                  <small *ngIf="mobile?.errors?.['pattern']">Please enter a valid 10-digit phone number</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-envelope me-1"></i>Email Address
+              </label>
+              <input formControlName="email" type="email" class="form-control form-control-lg"
+                placeholder="Enter your email" [class.is-invalid]="email?.invalid && email?.touched"
+                [class.is-valid]="email?.valid && email?.touched">
+              <div *ngIf="email?.invalid && email?.touched" class="invalid-feedback">
+                <small *ngIf="email?.errors?.['required']">Email is required</small>
+                <small *ngIf="email?.errors?.['email']">Please enter a valid email</small>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-lock me-1"></i>Password
+              </label>
+              <input formControlName="password" type="password" class="form-control form-control-lg"
+                placeholder="Create a password" [class.is-invalid]="password?.invalid && password?.touched"
+                [class.is-valid]="password?.valid && password?.touched">
+              <div *ngIf="password?.invalid && password?.touched" class="invalid-feedback">
+                <small *ngIf="password?.errors?.['required']">Password is required</small>
+                <small *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters</small>
+              </div>
+            </div>
+
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-primary btn-lg rounded-3"
+                [disabled]="signupForm.invalid || isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                <i *ngIf="!isLoading" class="bi bi-person-plus me-2"></i>
+                {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+              </button>
+            </div>
+          </form>
+
+          <div class="text-center">
+            <p class="text-muted mb-0">
+              Already have an account?
+              <a routerLink="/login" class="text-decoration-none fw-semibold text-primary">
+                Sign in here
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

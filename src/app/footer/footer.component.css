@@ -1,0 +1,99 @@
+.footer {
+  background: linear-gradient(135deg, #212529 0%, #495057 100%) !important;
+}
+
+.social-links a {
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #0d6efd !important;
+  transform: translateY(-2px);
+}
+
+.hover-opacity-100:hover {
+  opacity: 1 !important;
+  color: #0d6efd !important;
+}
+
+.contact-info div {
+  transition: all 0.3s ease;
+}
+
+.contact-info div:hover {
+  transform: translateX(5px);
+}
+
+/* Enhanced styling for better visual appeal */
+.social-links a {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px !important;
+  background: rgba(13, 110, 253, 0.1);
+  border: 1px solid rgba(13, 110, 253, 0.2);
+}
+
+.social-links a:hover {
+  background: rgba(13, 110, 253, 0.2);
+  border-color: #0d6efd;
+  box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+}
+
+/* Link hover effects */
+ul.list-unstyled li a {
+  transition: all 0.3s ease;
+  padding: 5px 0;
+  display: inline-block;
+}
+
+ul.list-unstyled li a:hover {
+  transform: translateX(5px);
+}
+
+/* Contact info icons */
+.contact-info i {
+  width: 20px;
+  text-align: center;
+}
+
+/* Footer sections */
+.col-lg-4,
+.col-lg-2 {
+  transition: transform 0.3s ease;
+}
+
+.col-lg-4:hover,
+.col-lg-2:hover {
+  transform: translateY(-2px);
+}
+
+/* Brand logo effect */
+h5.fw-bold {
+  transition: all 0.3s ease;
+}
+
+h5.fw-bold:hover {
+  color: #0d6efd !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .social-links {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .text-md-end {
+    text-align: center !important;
+    margin-top: 1rem;
+  }
+
+  .col-lg-4:hover,
+  .col-lg-2:hover {
+    transform: none;
+  }
+}
