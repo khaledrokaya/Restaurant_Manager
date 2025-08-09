@@ -1,6 +1,28 @@
 {
-  "name": "nti-project",
-  "version": "0.0.0",
+  "name": "restaurant-manager",
+  "version": "1.0.0",
+  "description": "A modern, feature-rich restaurant management system built with Angular 20 using standalone components and zoneless architecture",
+  "author": "Khaled Mostafa <contact@khaled-mostafa.me>",
+  "license": "MIT",
+  "homepage": "https://github.com/khaledrokaya/Restaurant_Manager#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khaledrokaya/Restaurant_Manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/khaledrokaya/Restaurant_Manager/issues"
+  },
+  "keywords": [
+    "angular",
+    "restaurant-management",
+    "typescript",
+    "bootstrap",
+    "standalone-components",
+    "zoneless",
+    "spa",
+    "responsive",
+    "crud"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
